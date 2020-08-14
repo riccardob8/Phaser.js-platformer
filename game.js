@@ -44,7 +44,6 @@ function preload () {
     game.load.image('platform5', '../assets/platforms/cloud700x80.png');
     game.load.image('platform6', '../assets/platforms/cloud300x65.png');
     game.load.image('platform7', '../assets/platforms/cloud500x75.png');
-
 }
 
 function create () {
@@ -99,11 +98,6 @@ function create () {
     badmemory = game.add.sprite(500, 1350, 'badmemory');
     badmemory.anchor.set(0.5, 0.5);
     game.physics.arcade.enable(badmemory);
-
-    //enemywall = game.add.sprite(500, 100, 'enemywall');
-    //enemywall.scale.setTo(2);
-    //game.physics.arcade.enable(enemywall);
-
     cursors = game.input.keyboard.createCursorKeys();
     jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     jumpButton.onDown.add(function(){
@@ -137,8 +131,6 @@ function update() {
     game.physics.arcade.collide(player, platforms);
     weapon.bulletSpeed = 600*player.scale.x;
     this.game.physics.arcade.collide(player, badmemory)
-
-    //game.physics.arcade.overlap(enemywall, weapon.bullet, hitEnemywall);
      player.body.velocity.x = 0;
     if ((game.input.keyboard.isDown(Phaser.Keyboard.LEFT) === true) && (player.body.onFloor() || player.body.touching.down)){
         player.body.velocity.x = -350;
@@ -173,9 +165,7 @@ function update() {
     }
     if (player.body.onFloor() || player.body.touching.down)
     secondJump=false;
-
     badmemory.body.velocity.x = 200 * badmemory_direction;
-
     if(badmemory.x > 900)
     {
         badmemory_direction = -1;
@@ -185,12 +175,6 @@ function update() {
     {
         badmemory_direction = 1;
     }
-
-    //if (jumpButton.isDown && (player.body.onFloor() || player.body.touching.down))
-    //{
-       // player.body.velocity.y = -400;
-    //}
-
     function hitEnemywall(enemywall, bullet){
         enemywall.kill()
         bullet.kill()
